@@ -1,31 +1,32 @@
 version: '2.1'
 
 services:
-    postgis-service:
-      image: bde2020/pilot-sc4-postgis:v0.1.0       
-      container_name: postgres
+    postgis:
+      image: bde2020/pilot-sc4-postgis:v0.10.0
+      hostname: postgis       
+      container_name: postgis
       restart: unless-stopped
       ports:
         - "5432:5432"
       environment:
-        - POSTGRES_PASSWORD="password"
+        - POSTGRES_PASSWORD=password
       networks:
         - pilot-sc4-net
         
-    map-match-service:
-     image: bde2020/pilot-sc4-rserve:v0.1.0
-     container_name: map-match
+    rserve:
+     image: bde2020/pilot-sc4-rserve:v0.10.0
+     hostname: rserve
+     container_name: rserve
      restart: unless-stopped
      ports:
        - "6311:6311"
      environment:
-        - POSTGRES_PASSWORD="password"
+        - POSTGRES_PASSWORD=password
      depends_on:
-       - postgis-service
+       - postgis
      networks:
        - pilot-sc4-net
     
-
 networks:
     pilot-sc4-net:
         external: true
