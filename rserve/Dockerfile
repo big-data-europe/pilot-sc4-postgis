@@ -1,8 +1,11 @@
 # The image created with this Dockerfile starts an instance of Rserve and imports R scripts to connect to PostGis
 # and map-match the location of a taxi to a road segment. 
 # 1) In order to build an image using this docker file, run the following docker command
+#
 # $  docker build -t bde2020/pilot-sc4-rserve:v0.10.0 .
+#
 # 2) Run a container using the command
+#
 # $ docker run --name map-match --network pilot-sc4-net -p 6311:6311 -e POSTGRES_PASSWORD=password -d bde2020/pilot-sc4-rserve:v0.10.0
 
 FROM ubuntu
