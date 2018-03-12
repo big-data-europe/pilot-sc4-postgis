@@ -23,7 +23,7 @@ A docker image with Postgres and PostGis can be built with the command
 Start a docker container with PostGis, name it e.g. "postgres", setting the password of the POSTGRES_USER=postgres 
 (e.g. "password")
 
-    $ docker run --name postgres --network pilot-sc4-net -p 5432:5432 -e POSTGRES_PASSWORD=password -d bde2020/pilot-sc4-postgis:v0.10.0
+    $ docker run --name postgis --network pilot-sc4-net -p 5432:5432 -e POSTGRES_PASSWORD=password -d bde2020/pilot-sc4-postgis:v0.10.0
 
 ## Rserve
 Rserve allows the use of R scripts and functions from Java through a TCP/IP connection. The server can be configured
@@ -35,7 +35,7 @@ called from Java, the port and the remote connection enabled. A docker image of 
 
 In order to start the container execute the command
 
-    $ docker run --name map-match --network pilot-sc4-net -p 6311:6311 -e POSTGRES_PASSWORD=password -d bde2020/pilot-sc4-rserve:v0.10.0
+    $ docker run --name rserve --network pilot-sc4-net -p 6311:6311 -e POSTGRES_PASSWORD=password -d bde2020/pilot-sc4-rserve:v0.10.0
 
 ## Usage
 Both services can be started using docker-compose
@@ -45,7 +45,7 @@ Both services can be started using docker-compose
 ## Test the Rserve and PostGis docker containers
 You can open a shell in the Rserve container with the command
 
-    $ docker exec -it map-match bash
+    $ docker exec -it rserve bash
 
 From the Rserve container run the script
 
