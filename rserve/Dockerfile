@@ -47,6 +47,13 @@ ADD package/ package/
 
 # Install the Rserve package for R
 RUN ["R", "CMD", "INSTALL", "package/Rserve_1.8-5.tar.gz"]
+
+RUN apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y netcat
+
+# copy entrypoint script that checks for service preonditions if specified in SERVICEPRECONDITION 
+COPY entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
   
 # Start Rserve (no daemon)
 CMD ["sh","start_rserve.sh"]
